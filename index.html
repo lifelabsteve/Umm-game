@@ -7,25 +7,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Umm-game</h1>
-        <div class="game-area">
-            <div class="problem-display">
-                <h2>문제:</h2>
+    <div class="app-container">
+        <div class="app-content">
+            <div class="app-title">Umm-game</div>
+            
+            <div class="card problem-card">
+                <h2>문제</h2>
                 <p id="current-problem">게임을 시작하려면 '다음 문제' 버튼을 클릭하세요</p>
             </div>
-            <div class="rules-display">
-                <h3>규칙:</h3>
+            
+            <div class="card rules-card">
+                <h2>규칙</h2>
                 <ul id="active-rules"></ul>
-                <button id="add-rule-btn">규칙 추가</button>
+                <button id="add-rule-btn" class="btn btn-secondary">규칙 추가</button>
             </div>
-            <div class="timer-display">
-                <h3>타이머:</h3>
+            
+            <div class="card timer-card">
+                <h2>타이머</h2>
                 <p id="timer">00:00:00</p>
             </div>
+            
             <div class="controls">
-                <button id="pause-btn">일시정지</button>
-                <button id="next-btn">다음 문제</button>
+                <button id="pause-btn" class="btn btn-secondary">일시정지</button>
+                <button id="next-btn" class="btn btn-primary">다음 문제</button>
             </div>
         </div>
     </div>
