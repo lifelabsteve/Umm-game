@@ -1,3 +1,5 @@
+import { adjectives, nouns } from './data.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     // 필요한 요소 가져오기
     const problemDisplay = document.getElementById('current-problem');
@@ -13,9 +15,30 @@ document.addEventListener('DOMContentLoaded', function() {
     let elapsedTime = 0;
     let timerInterval;
     
-    // 형용사와 명사 데이터를 직접 배열로 선언
-    const adjectives = ["가난한", "가벼운", "가득한", "가련한", "간단한", "강한", /* 나머지 형용사 추가 */];
-    const nouns = ["가게", "가구", "가방", "가슴", "가족", /* 나머지 명사 추가 */];
+    // 형용사와 명사 데이터를 저장할 배열
+    let adjectives = [];
+    let nouns = [];
+    
+    // 데이터 로드 함수
+    async function loadData() {
+        try {
+            // JSON 파일에서 데이터 로드
+            const response = await fetch('words.json');
+            const data = await response.json();
+            
+            adjectives = data.adjectives;
+            nouns = data.nouns;
+            
+            // 첫 문제 생성
+            nextProblem();
+        } catch (error) {
+            console.error('데이터 로드 중 오류 발생:', error);
+            // 오류 발생 시 기본 데이터 사용
+            adjectives = ["가난한", "가벼운", "가득한", "가련한", "간단한", "강한"];
+            nouns = ["가게", "가구", "가방", "가슴", "가족"];
+            nextProblem();
+        }
+    }
     
     // 규칙 목록
     const rules = [
@@ -32,7 +55,37 @@ document.addEventListener('DOMContentLoaded', function() {
         "숫자 말하지 않기",
         "고개 젓지 않기",
         "눈 깜빡이지 않기",
-        "입술 물지 않기"
+        "입술 물지 않기",
+        "'음...' 말하지 않기",
+        "손가락으로 가리키지 않기",
+        "팔짱 끼지 않기",
+        "다리 꼬지 않기",
+        "'아니' 라는 말 쓰지 않기",
+        "의견 부정하지 않기",
+        "반복된 단어 사용하지 않기",
+        "허리 숙이지 않기",
+        "어깨 으쓱하지 않기",
+        "입 다물지 않기",
+        "혀 차지 않기",
+        "한숨 쉬지 않기",
+        "목청 가다듬지 않기",
+        "손바닥 비비지 않기",
+        "손톱 만지지 않기",
+        "'그냥'이라는 말 쓰지 않기",
+        "발로 바닥 치지 않기",
+        "의자 돌리지 않기",
+        "'저기'라는 말 쓰지 않기",
+        "머리 긁지 않기",
+        "'뭐지'라는 말 쓰지 않기",
+        "손목시계 보지 않기",
+        "머리카락 만지지 않기",
+        "입술 핥지 않기",
+        "손가락 꼬지 않기",
+        "'아마'라는 말 쓰지 않기",
+        "'이제'라는 말 쓰지 않기",
+        "책상 두드리지 않기",
+        "의자에서 흔들리지 않기",
+        "주머니에 손 넣지 않기"
     ];
     
     // 활성화된 규칙 배열
@@ -155,4 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
     nextBtn.addEventListener('click', nextProblem);
     
     addRuleBtn.addEventListener('click', addRule);
+    
+    // 데이터 로드 시작
+    loadData();
 }); 
