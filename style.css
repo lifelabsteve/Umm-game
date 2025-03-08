@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.container {
+    width: 80%;
+    max-width: 600px;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.problem-display, .timer-display {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+#current-problem {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#timer {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#pause-btn {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+#next-btn {
+    background-color: #5cb85c;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* 규칙 관련 스타일 추가 */
+.rules-display {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+#active-rules {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+#active-rules li {
+    background-color: #e0e0e0;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#active-rules li:hover {
+    background-color: #d0d0d0;
+}
+
+#active-rules li::before {
+    content: "• ";
+    color: #5cb85c;
+}
+
+#add-rule-btn {
+    background-color: #5bc0de;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#add-rule-btn:hover {
+    background-color: #46b8da;
+}
+
+#add-rule-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+} 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umm-game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Umm-game</h1>
+        <div class="game-area">
+            <div class="problem-display">
+                <h2>문제:</h2>
+                <p id="current-problem">게임을 시작하려면 '다음 문제' 버튼을 클릭하세요</p>
+            </div>
+            <div class="rules-display">
+                <h3>규칙:</h3>
+                <ul id="active-rules"></ul>
+                <button id="add-rule-btn">규칙 추가</button>
+            </div>
+            <div class="timer-display">
+                <h3>타이머:</h3>
+                <p id="timer">00:00:00</p>
+            </div>
+            <div class="controls">
+                <button id="pause-btn">일시정지</button>
+                <button id="next-btn">다음 문제</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
