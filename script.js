@@ -1,5 +1,3 @@
-import { adjectives, nouns } from './data.js';
-
 document.addEventListener('DOMContentLoaded', function() {
     // 필요한 요소 가져오기
     const problemDisplay = document.getElementById('current-problem');
@@ -91,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 활성화된 규칙 배열
     let activeRules = [];
     
-    // 랜덤 문제 생성
+    // 문제 생성 함수
     function generateProblem() {
         const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
         const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
@@ -99,34 +97,37 @@ document.addEventListener('DOMContentLoaded', function() {
         return `${randomAdj} ${randomNoun}`;
     }
     
-    // 타이머 업데이트 함수
-    function updateTimer() {
-        const currentTime = Date.now();
-        const timeElapsed = currentTime - startTime + elapsedTime;
-        
-        const hours = Math.floor(timeElapsed / 3600000);
-        const minutes = Math.floor((timeElapsed % 3600000) / 60000);
-        const seconds = Math.floor((timeElapsed % 60000) / 1000);
-        
-        timerDisplay.textContent = 
-            `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    }
-    
     // 타이머 시작 함수
     function startTimer() {
         if (!timerRunning) {
             timerRunning = true;
-            startTime = Date.now();
-            timerInterval = setInterval(updateTimer, 1000);
+            startTime = Date.now() - elapsedTime;
+            timerInterval = setInterval(updateTimer, 10);
         }
+    }
+    
+    // 타이머 업데이트 함수
+    function updateTimer() {
+        const currentTime = Date.now();
+        elapsedTime = currentTime - startTime;
+        
+        const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+        const minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+        
+        const formattedTime = 
+            (hours < 10 ? "0" + hours : hours) + ":" + 
+            (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+            (seconds < 10 ? "0" + seconds : seconds);
+        
+        timerDisplay.textContent = formattedTime;
     }
     
     // 타이머 일시정지 함수
     function pauseTimer() {
         if (timerRunning) {
-            timerRunning = false;
             clearInterval(timerInterval);
-            elapsedTime += Date.now() - startTime;
+            timerRunning = false;
         } else {
             startTimer();
         }
